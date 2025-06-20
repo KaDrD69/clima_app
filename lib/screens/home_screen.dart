@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:clima_app/data/model/clima_response.dart';
+import 'package:clima_app/data/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +10,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final repository = Repository();
+    ClimaResponse? clima = await repository.fetchClima("Punta Arenas");
+     
     return Scaffold(
       backgroundColor: Colors.black,
       extendBodyBehindAppBar: true,
