@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   double? temp;
+  String? des;
 
   @override
   void initState(){
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (clima != null){
       setState(() {
         temp = clima.temp;
+        des = clima.description;
       });
     }
   }
@@ -116,8 +118,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 10),
-                      Image.asset("assets/moderno/night_full_moon_rain.png")
+                      SizedBox(height: 5),
+                      Image.asset("assets/moderno/night_full_moon_rain.png"),
+                      SizedBox(height: 5),
+                      Center(
+                        child: Text(
+                          (temp == null || des == null)
+                            ? ""
+                            : "${temp!.toStringAsFixed(0)}°C",
+                          style: TextStyle(fontSize: 70, color: Colors.white),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          (temp == null || des == null)
+                            ? ""
+                            : des!.toUpperCase(),
+                          style: TextStyle(fontSize: 22, color: Colors.white), 
+                        ),
+                      )
                     ],
                   ),
                 )

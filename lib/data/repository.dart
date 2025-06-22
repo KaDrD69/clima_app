@@ -7,7 +7,7 @@ class Repository {
 
   Future<ClimaResponse?> fetchClima() async {
     const String ciudad = "Punta Arenas";
-    final url = "https://api.openweathermap.org/data/2.5/weather?q=$ciudad&appid=${ApiKey.apiKey}&units=metric";
+    final url = "https://api.openweathermap.org/data/2.5/weather?q=$ciudad&appid=${ApiKey.apiKey}&units=metric&lang=es";
     final response = await http.get(Uri.parse(url));
     
 
