@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else {
           esDia = false;
         }
-        icono = ObtenerIcono(esDia, id);
+        icono = obtenerIcono(esDia, id);
       });
     }
   }
@@ -118,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         temp == null
                         ? "cargando temperatura"
-                        : "Temperatura: ${temp!.toStringAsFixed(1)} Celcius",
+                        : "Temperatura: ${temp!.toStringAsFixed(1)} Celsius",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w300,
@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       SizedBox(height: 5),
-                      Image.asset("assets/moderno/night_full_moon_rain.png"),
+                      Image.asset("$icono"),
                       SizedBox(height: 5),
                       Center(
                         child: Text(
