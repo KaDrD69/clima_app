@@ -16,6 +16,7 @@ class ClimaBloc {
   Future<void> cargarClima() async {
     final repo = Repository();
     final clima = await repo.fetchClima();
+
     if (clima != null){    
         _temp = clima.temp;
         _des = clima.description;
@@ -27,10 +28,9 @@ class ClimaBloc {
           _esDia = false;
         }
         _icono = obtenerIcono(_esDia, _id);
-
         _climaController.sink.add({
           "temp": _temp,
-          "descripcion": _des,
+          "des": _des,
           "icono": _icono,
           "esDia": _esDia,
 

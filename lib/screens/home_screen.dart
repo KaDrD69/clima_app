@@ -22,6 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     climaBloc.cargarClima();
   }
+
+  @override
+  void dispose() {
+    climaBloc.dispose();
+    super.dispose();
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -36,103 +42,116 @@ class _HomeScreenState extends State<HomeScreen> {
           statusBarBrightness: Brightness.dark
         ),
       ),
-      body: RefreshIndicator(
-        onRefresh: cargarClima,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(40, 1.2 * kToolbarHeight, 40, 20),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Stack(
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(8, -0.1),
-                  child: Container(
-                    height: 300,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.blueAccent
-                    ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(30, 1.2 * kToolbarHeight, 30, 20),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: [
+              Align(
+                alignment: AlignmentDirectional(8, -0.1),
+                child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blueAccent
                   ),
                 ),
-                Align(
-                  alignment: AlignmentDirectional(-8, -0.1),
-                  child: Container(
-                    height: 300,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.blueAccent
-                    ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(-8, -0.1),
+                child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.blueAccent
                   ),
                 ),
-                Align(
-                  alignment: AlignmentDirectional(0, -1.22),
-                  child: Container(
-                    height: 300,
-                    width: 600,
-                    decoration: BoxDecoration(
-                      color: Colors.lightBlueAccent
-                    ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0, -1.22),
+                child: Container(
+                  height: 300,
+                  width: 600,
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlueAccent
                   ),
                 ),
-                BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 200.0, sigmaY: 200.0),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent
-                    ),
+              ),
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 200.0, sigmaY: 200.0),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        temp == null
-                        ? "cargando temperatura"
-                        : "Temperatura: ${temp!.toStringAsFixed(1)} Celsius",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w300,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: StreamBuilder(
+                  stream: climaBloc.stream,
+                  builder: (context, snapshot) {
+                    if(snapshot.hasError){
+                      return Text("Error al cargar");
+                    }
+                    if(!snapshot.hasData){
+                      return Text("Cargando temperatura...");
+                    }
+                    final data = snapshot.data!;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            "Temperatura: ${data!["temp"].toStringAsFixed(1)} Celsius",
+                            style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "PUNTA ARENAS",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                        Row(
+                          children: [
+                            Text(
+                              "PUNTA ARENAS",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.refresh),     
+                              onPressed: (){
+                                climaBloc.cargarClima();
+                              },
+                            )
+                          ],
                         ),
-                      ),
-                      SizedBox(height: 5),
-                      Image.asset("$icono"),
-                      SizedBox(height: 5),
-                      Center(
-                        child: Text(
-                          (temp == null || des == null)
-                            ? ""
-                            : "${temp!.toStringAsFixed(0)}°C",
-                          style: TextStyle(fontSize: 70, color: Colors.white),
+                        SizedBox(height: 5),
+                        Image.asset("${data["icono"]}"),
+                        SizedBox(height: 5),
+                        Center(
+                          child: Text(
+                                "${data["temp"].toStringAsFixed(0)}°C",
+                                style: TextStyle(fontSize: 70, color: Colors.white),
+                          ),
                         ),
-                      ),
-                      Center(
-                        child: Text(
-                          (temp == null || des == null)
-                            ? ""
-                            : des!.toUpperCase(),
-                          style: TextStyle(fontSize: 22, color: Colors.white), 
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),  
-        ),
+                        Center(
+                          child: Text(
+                                data["des"].toUpperCase(),
+                                style: TextStyle(fontSize: 22, color: Colors.white), 
+                          ),
+                        )
+                      ],
+                    );
+                  }
+                ),
+              )
+            ],
+          ),
+        ),  
       ),
         
     );
