@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 //import 'package:clima_app/data/model/clima_response.dart';
+import 'package:clima_app/bloc/clima_bloc.dart';
 import 'package:clima_app/data/icons_weather.dart';
 import 'package:clima_app/data/repository.dart';
 import 'package:flutter/material.dart';
@@ -14,40 +15,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  double? temp;
-  String? des;
-  int? id;
-  String? icono;
-  int? dt;
-  bool? esDia;
-
+  final ClimaBloc climaBloc = ClimaBloc();
+ 
   @override
   void initState(){
     super.initState();
-    cargarClima();
+    climaBloc.cargarClima();
   }
-
-  Future<void> cargarClima() async {
-    final repo = Repository();
-    final clima = await repo.fetchClima();
-    if (clima != null){
-      setState(() {
-        temp = clima.temp;
-        des = clima.description;
-        id = clima.id;
-        dt = clima.dt;
-        if (dt! >= clima.amanacer && dt! < clima.atardecer){
-          esDia = true;
-        } else {
-          esDia = false;
-        }
-        icono = obtenerIcono(esDia, id);
-      });
-    }
-  }
-
-
-
+  
   @override
   Widget build(BuildContext context) {
        
