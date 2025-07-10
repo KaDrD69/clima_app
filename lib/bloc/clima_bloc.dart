@@ -5,9 +5,11 @@ import 'package:clima_app/data/repository.dart';
 class ClimaBloc {
   final _climaController = StreamController();
   double _temp = 0;
+  double _tempmin = 0;
+  double _tempmax = 0;
   String _des = "";
   int _id = 0;
-  String _icono = "";
+  final String _icono = "";
   int _dt = 0;
   String _dianoche = "";
   String _ciudad = "";
@@ -20,6 +22,8 @@ class ClimaBloc {
 
     if (clima != null){    
         _temp = clima.temp;
+        _tempmin = clima.tempmin;
+        _tempmax = clima.tempmax;
         _des = clima.description;
         _id = clima.id;
         _dt = clima.dt;
@@ -32,6 +36,8 @@ class ClimaBloc {
         //_icono = obtenerIcono(_dianoche, _id);
         _climaController.sink.add({
           "temp": _temp,
+          "tempmin": _tempmin,
+          "tempmax": _tempmax,
           "des": _des,
           "icono": _icono,
           "dianoche": _dianoche,
