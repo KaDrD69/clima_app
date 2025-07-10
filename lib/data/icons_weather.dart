@@ -1,4 +1,4 @@
-String obtenerIcono(bool? dia, int? id){
+String obtenerIcono(String? dia, int? id){
   if (id == null) {
     return '';
   }

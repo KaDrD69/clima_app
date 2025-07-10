@@ -9,7 +9,8 @@ class ClimaBloc {
   int _id = 0;
   String _icono = "";
   int _dt = 0;
-  bool _esDia = true;
+  String _dianoche = "";
+  String _ciudad = "";
 
   Stream get stream => _climaController.stream;
 
@@ -22,18 +23,19 @@ class ClimaBloc {
         _des = clima.description;
         _id = clima.id;
         _dt = clima.dt;
+        _ciudad = clima.ciudad;
         if (_dt >= clima.amanacer && _dt < clima.atardecer){
-          _esDia = true;
+          _dianoche = "dia";
         } else {
-          _esDia = false;
+          _dianoche = "noche";
         }
-        _icono = obtenerIcono(_esDia, _id);
+        //_icono = obtenerIcono(_dianoche, _id);
         _climaController.sink.add({
           "temp": _temp,
           "des": _des,
           "icono": _icono,
-          "esDia": _esDia,
-
+          "dianoche": _dianoche,
+          "ciudad": _ciudad,
         });
      
     }

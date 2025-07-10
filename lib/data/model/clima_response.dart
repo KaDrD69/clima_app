@@ -5,6 +5,7 @@ class ClimaResponse {
   final int atardecer;
   final int id;
   final int dt;
+  final String ciudad;
 
   ClimaResponse({
     required this.description,
@@ -13,6 +14,7 @@ class ClimaResponse {
     required this.atardecer,
     required this.id,
     required this.dt,
+    required this.ciudad,
   });
 
   factory ClimaResponse.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class ClimaResponse {
       atardecer: json["sys"]["sunset"] as int,
       id: json["weather"][0]["id"] as int,
       dt: json["dt"] as int,
+      ciudad: json["name"] as String,
     );
   }
 }
