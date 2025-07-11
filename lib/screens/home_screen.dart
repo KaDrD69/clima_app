@@ -2,9 +2,11 @@ import 'dart:ui';
 
 //import 'package:clima_app/data/model/clima_response.dart';
 import 'package:clima_app/bloc/clima_bloc.dart';
+import 'package:clima_app/presentation/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,10 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: Colors.black,
-            body: Center(child: SpinKitThreeBounce(
-              color: Colors.white,
-              size: 30
-            ))
+            body: Center(
+              child: SpinKitThreeBounce(color: Colors.white, size: 30),
+            ),
           );
         }
         final data = snapshot.data!;
@@ -54,7 +55,10 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${data["ciudad"]}", style: TextStyle(color: Colors.white)),
+                Text(
+                  "${data["ciudad"]}",
+                  style: EstiloTextos.titulo
+                ),
               ],
             ),
             backgroundColor: Colors.transparent,
@@ -66,40 +70,67 @@ class _HomeScreenState extends State<HomeScreen> {
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/fondo/dia.png"),
-                fit: BoxFit.cover
-              )
+                image: AssetImage("assets/fondo/few_clouds_dia.png"),
+                fit: BoxFit.cover,
+              ),
             ),
             child: Container(
               color: Color.fromRGBO(0, 0, 0, 0.2),
               child: ListView(
                 children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 50,),
+                      // IconButton(
+                      //   icon: Icon(Icons.refresh),
+                      //   onPressed: () {
+                      //     climaBloc.cargarClima();
+                      //   },
+                      // ),
+                      //Image.asset("${data["icono"]}"),
+                      Text(
+                        "${data["temp"].toStringAsFixed(0)}°C",
+                        style: EstiloTextos.estilo1,
+                      ),
+                      Text(
+                        data["des"],
+                        style: EstiloTextos.estilo2
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(0, 0, 100, 0.1),
+                      borderRadius: BorderRadius.circular(8)
+                    ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // IconButton(
-                        //   icon: Icon(Icons.refresh),
-                        //   onPressed: () {
-                        //     climaBloc.cargarClima();
-                        //   },
-                        // ),
-                        SizedBox(height: 5),
-                        //Image.asset("${data["icono"]}"),
-                        SizedBox(height: 5),
-                        Center(
-                          child: Text(
-                            "${data["temp"].toStringAsFixed(0)}°C",
-                            style: TextStyle(fontSize: 70, color: Colors.white),
-                          ),
+                        Row(
+                          children: [
+                            Text("Mínima"),
+                            Text("${data["tempmin"]}"),
+                          ],
                         ),
-                        Center(
-                          child: Text(
-                            data["des"],
-                            style: TextStyle(fontSize: 22, color: Colors.white, fontStyle: FontStyle.italic),
-                          ),
+                        Row(
+                          children: [
+                            Text("Máxima"),
+                            Text("${data["tempmax"]}"),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Viento", style: TextStyle(),),
+                            Text("12Km/hr"),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text("Humedad"),
+                            Text("93%"),
+                          ],
                         ),
                       ],
                     ),

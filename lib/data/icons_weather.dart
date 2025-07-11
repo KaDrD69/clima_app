@@ -6,27 +6,27 @@ String obtenerIcono(String? dia, int? id){
   Map<int, dynamic> weatherIcons = {
     // Cielo claro
     800: {
-      "d":'assets/alter/clear.png',
-      "n": "assets/alter/clear_night.png"
+      "d":'assets/alter/few_clouds_dia.png',
+      "n": "assets/alter/clear_noche.png"
     },
     // Algunas nubes
     801: {
-      "d": 'assets/alter/few_clouds.png',
-      "n": 'assets/alter/few_clouds_night.png'
+      "d": 'assets/alter/few_clouds_dia.png',
+      "n": 'assets/alter/few_clouds_noche.png'
     },
     802: {
-      "d": 'assets/alter/few_clouds.png',
-      "n": 'assets/alter/few_clouds_night.png'
+      "d": 'assets/alter/few_clouds_dia.png',
+      "n": 'assets/alter/few_clouds_noche.png'
     },
     // Nublado
     803: {
-      "d": 'assets/alter/few_clouds.png',
-      "n": 'assets/alter/few_clouds_night.png'
+      "d": 'assets/alter/clouds_dia.png',
+      "n": 'assets/alter/clouds_noche.png'
     },
     // Nubes dispersas
     804: {
-      "d": 'assets/alter/few_clouds.png',
-      "n": 'assets/alter/few_clouds_night.png'
+      "d": 'assets/alter/few_clouds_dia.png',
+      "n": 'assets/alter/few_clouds_noche.png'
     },
 
     // Lluvias
@@ -45,10 +45,10 @@ String obtenerIcono(String? dia, int? id){
     701: 'assets/alter/mist.png',
   };
 
-  if (dia == true && id! >= 800 ){
+  if (dia == true && id >= 800 ){
    return weatherIcons[id]?["d"] ?? ''; 
 
-  } else if (dia == false && id! >= 800) {
+  } else if (dia == false && id >= 800) {
     return weatherIcons[id]?["n"] ?? '';
   }
 
