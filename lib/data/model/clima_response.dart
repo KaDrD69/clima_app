@@ -3,6 +3,8 @@ class ClimaResponse {
   final double temp;
   final double tempmin;
   final double tempmax;
+  final double speedW;
+  final int humedad;
   final int amanacer;
   final int atardecer;
   final int id;
@@ -12,9 +14,11 @@ class ClimaResponse {
 
   ClimaResponse({
     required this.description,
+    required this.humedad,
     required this.temp,
     required this.tempmin,
     required this.tempmax,
+    required this.speedW,
     required this.amanacer,
     required this.atardecer,
     required this.id,
@@ -25,9 +29,11 @@ class ClimaResponse {
   factory ClimaResponse.fromJson(Map<String, dynamic> json) {
     return ClimaResponse(
       description: json["weather"][0]["description"],
+      humedad: json["main"]["humidity"] as int,
       temp: json["main"]["temp"] as double,
       tempmin: json["main"]["temp_min"] as double,
       tempmax: json["main"]["temp_max"] as double,
+      speedW: json["wind"]["speed"] as double,
       amanacer: json["sys"]["sunrise"] as int,
       atardecer: json["sys"]["sunset"] as int,
       id: json["weather"][0]["id"] as int,
