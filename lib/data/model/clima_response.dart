@@ -1,5 +1,6 @@
 class ClimaResponse {
   final String description;
+  final String desActual;
   final double temp;
   final double tempmin;
   final double tempmax;
@@ -14,6 +15,7 @@ class ClimaResponse {
 
   ClimaResponse({
     required this.description,
+    required this.desActual,
     required this.humedad,
     required this.temp,
     required this.tempmin,
@@ -29,6 +31,7 @@ class ClimaResponse {
   factory ClimaResponse.fromJson(Map<String, dynamic> json) {
     return ClimaResponse(
       description: json["weather"][0]["description"],
+      desActual: json["weather"][0]["main"],
       humedad: json["main"]["humidity"] as int,
       temp: json["main"]["temp"] as double,
       tempmin: json["main"]["temp_min"] as double,

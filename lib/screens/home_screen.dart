@@ -17,6 +17,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ClimaBloc climaBloc = ClimaBloc();
 
+  Future<void> _refresh(){
+    return climaBloc.cargarClima();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -52,12 +56,24 @@ class _HomeScreenState extends State<HomeScreen> {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.menu),
+                  iconSize: 30,
+                  color: Colors.white,
+                ),
                 Text(
                   "${data["ciudad"]}",
                   style: EstiloTextos.titulo
                 ),
+                IconButton(
+                  onPressed: (){},
+                  icon: Icon(Icons.search),
+                  iconSize: 30,
+                  color: Colors.white,
+                )
               ],
             ),
             backgroundColor: Colors.transparent,
@@ -75,81 +91,92 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Container(
               color: Color.fromRGBO(0, 0, 0, 0.2),
-              child: ListView(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(height: 60),
-                      // IconButton(
-                      //   icon: Icon(Icons.refresh),
-                      //   onPressed: () {
-                      //     climaBloc.cargarClima();
-                      //   },
-                      // ),
-                      //Image.asset("${data["icono"]}"),
-                      Text(
-                        "${data["temp"].toStringAsFixed(0)}°C",
-                        style: EstiloTextos.estilo1,
-                      ),
-                      Text(
-                        data["des"],
-                        style: EstiloTextos.estilo2
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Container(
-                    margin: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(0, 0, 100, 0.1),
-                      borderRadius: BorderRadius.circular(8)
+              child:RefreshIndicator(
+                onRefresh: _refresh,
+                child: ListView(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(height: 60),
+                        // IconButton(
+                        //   icon: Icon(Icons.refresh),
+                        //   onPressed: () {
+                        //     climaBloc.cargarClima();
+                        //   },
+                        // ),
+                        //Image.asset("${data["icono"]}"),
+                        Text(
+                          "${data["temp"].toStringAsFixed(0)}°C",
+                          style: EstiloTextos.textoGrande,
+                        ),
+                        Text(
+                          data["des"],
+                          style: EstiloTextos.textoPequeno1
+                        ),
+                      ],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(Icons.arrow_upward),
-                              Text("Mínima", style: EstiloTextos.estilo3),
-                              Text("${data["tempmin"]}°", style: EstiloTextos.estilo3),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(Icons.arrow_downward),
-                              Text("Máxima", style: EstiloTextos.estilo3),
-                              Text("${data["tempmax"]}°", style: EstiloTextos.estilo3),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(Icons.water_drop),
-                              Text("Humedad", style: EstiloTextos.estilo3),
-                              Text("${data["humedad"]}%", style: EstiloTextos.estilo3),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(Icons.air),
-                              Text("Viento", style: EstiloTextos.estilo3),
-                              Text("${data["viento"]}km", style: EstiloTextos.estilo3),
-                            ],
-                          ),
-                        ],
+                    SizedBox(height: 60),
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(0, 0, 0, 0.094),
+                        borderRadius: BorderRadius.circular(8)
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.arrow_downward),
+                                SizedBox(width: 5),
+                                Text("Mínima", style: EstiloTextos.textoPequeno2),
+                                Spacer(),
+                                Text("${data["tempmin"]}°", style: EstiloTextos.textoPequeno2),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.arrow_upward),
+                                SizedBox(width: 5),
+                                Text("Máxima", style: EstiloTextos.textoPequeno2),
+                                Spacer(),
+                                Text("${data["tempmax"]}°", style: EstiloTextos.textoPequeno2),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.water_drop),
+                                SizedBox(width: 5),
+                                Text("Humedad", style: EstiloTextos.textoPequeno2),
+                                Spacer(),
+                                Text("${data["humedad"]}%", style: EstiloTextos.textoPequeno2),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.air),
+                                SizedBox(width: 5),
+                                Text("Viento", style: EstiloTextos.textoPequeno2),
+                                Spacer(),
+                                Text("${data["viento"]}km", style: EstiloTextos.textoPequeno2),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

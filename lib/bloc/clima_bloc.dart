@@ -9,6 +9,7 @@ class ClimaBloc {
   double _tempmin = 0;
   double _tempmax = 0;
   String _des = "";
+  String _desActual = "";
   int _humedad = 0;
   int _id = 0;
   int _dt = 0;
@@ -29,6 +30,7 @@ class ClimaBloc {
         _tempmin = clima.tempmin;
         _tempmax = clima.tempmax;
         _des = clima.description;
+        _desActual = clima.desActual;
         //_id = clima.id;
         _dt = clima.dt;
         _ciudad = clima.ciudad;
@@ -45,6 +47,7 @@ class ClimaBloc {
           "humedad": _humedad,
           "viento" : _viento,
           "des": _des,
+          "desActual": _desActual,
         //  "icono": _icono,
           "dianoche": _dianoche,
           "ciudad": _ciudad,
