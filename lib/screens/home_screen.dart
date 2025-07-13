@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 60),
+                    SizedBox(height: 80),
                     Container(
                       margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(

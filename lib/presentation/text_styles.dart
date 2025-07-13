@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class EstiloTextos {
   static final TextStyle titulo = GoogleFonts.inter(
     color: Colors.white,
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: FontWeight.bold,
     shadows: [Shadow(offset: Offset(1, 1), color: Colors.black54, blurRadius: 3)],
   );

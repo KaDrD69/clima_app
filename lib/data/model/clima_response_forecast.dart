@@ -1,19 +1,15 @@
 class ClimaResponseForecast {
-  final int fecha;
-//  final List lista;
+  final List<Map<String, dynamic>> lista;
 
   ClimaResponseForecast({
-    required this.fecha,
-//    required this.lista,
+    required this.lista,
   });
   
 
   factory ClimaResponseForecast.fromJson(Map<String, dynamic> json){
-    for (dynamic lista in json["list"]){
-      print(lista);
-    }
+    final listaLimpia = List<Map<String, dynamic>>.from(json["list"]);
     return ClimaResponseForecast(
-      fecha: json["list"][2]["dt"] as int,
+      lista: listaLimpia,
     );
   }
 }

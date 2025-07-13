@@ -5,19 +5,6 @@ import 'package:clima_app/data/repository.dart';
 class ClimaBloc {
   final _climaController = StreamController();
 
-  double _temp = 0;
-  double _viento = 0;
-  double _tempmin = 0;
-  double _tempmax = 0;
-  String _des = "";
-  String _desActual = "";
-  int _humedad = 0;
-  int _id = 0;
-  int _dt = 0;
-  String _icono = "";
-  String _dianoche = "";
-  String _ciudad = "";
-
   final int _fecha = 0;
 
   Stream get stream => _climaController.stream;
@@ -27,10 +14,17 @@ class ClimaBloc {
     final clima = await repo.fetchClima();
     final climaForecast = await repo.fetchClimaForecast();
 
+    DateTime fecha = DateTime.fromMillisecondsSinceEpoch(clima!.dt*1000); 
+    print(fecha);
+    // for(var item in climaForecast!.lista){
+
+    //   print(item["dt_txt"]);
+    // }
+
 
     if (clima != null && climaForecast != null) {
       _climaController.sink.add({
-        "fecha": climaForecast.fecha,
+        //"fecha": climaForecast.fecha,
         "temp": clima.temp,
         "tempmin": clima.tempmin,
         "tempmax": clima.tempmax,
@@ -45,16 +39,16 @@ class ClimaBloc {
       });
     } else {
       _climaController.sink.add({
-        "fecha": climaForecast?.fecha ?? _fecha,
-        "temp": _temp,
-        "tempmin": _tempmin,
-        "tempmax": _tempmax,
-        "humedad": _humedad,
-        "viento": _viento,
-        "des": _des,
-        "desActual": _desActual,
-        "dianoche": _dianoche,
-        "ciudad": _ciudad,
+      //  "fecha": climaForecast?.fecha ?? _fecha,
+        "temp": 0,
+        "tempmin": 0,
+        "tempmax": 0,
+        "humedad": 0,
+        "viento": 0,
+        "des": "",
+        "desActual": "",
+        "dianoche": "",
+        "ciudad": "",
       });
     }
 

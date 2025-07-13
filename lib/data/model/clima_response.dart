@@ -11,7 +11,6 @@ class ClimaResponse {
   final int id;
   final int dt;
   final String ciudad;
-  
 
   ClimaResponse({
     required this.description,
