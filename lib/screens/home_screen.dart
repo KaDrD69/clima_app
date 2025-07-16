@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ClimaBloc climaBloc = ClimaBloc();
 
-  Future<void> _refresh(){
+  Future<void> _refresh() {
     return climaBloc.cargarClima();
   }
 
@@ -59,21 +59,18 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   icon: Icon(Icons.menu),
                   iconSize: 30,
                   color: Colors.white,
                 ),
-                Text(
-                  "${data["ciudad"]}",
-                  style: EstiloTextos.titulo
-                ),
+                Text("${data["ciudad"]}", style: EstiloTextos.titulo),
                 IconButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   icon: Icon(Icons.search),
                   iconSize: 30,
                   color: Colors.white,
-                )
+                ),
               ],
             ),
             backgroundColor: Colors.transparent,
@@ -84,14 +81,23 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/fondo/few_clouds_dia.png"),
-                fit: BoxFit.cover,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.lightBlueAccent.shade200,
+                  Colors.lightBlue.shade200, //Colors.lightBlue.withValues(alpha: 0.5) para opacidad
+                  Colors.lightBlueAccent.shade100,
+                ]
+              )
+              // image: DecorationImage(
+              //   image: AssetImage("assets/fondo/few_clouds_dia.png"),
+              //   fit: BoxFit.cover,
               ),
-            ),
+            
             child: Container(
               color: Color.fromRGBO(0, 0, 0, 0.2),
-              child:RefreshIndicator(
+              child: RefreshIndicator(
                 onRefresh: _refresh,
                 child: ListView(
                   children: [
@@ -108,13 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         // ),
                         //Image.asset("${data["icono"]}"),
                         Text(
-                          "${data["temp"].toStringAsFixed(0)}°C",
+                          "${data["temp"].toStringAsFixed(0)}°",
                           style: EstiloTextos.textoGrande,
                         ),
-                        Text(
-                          data["des"],
-                          style: EstiloTextos.textoPequeno1
-                        ),
+                        Text(data["des"], style: EstiloTextos.textoPequeno1),
                       ],
                     ),
                     SizedBox(height: 80),
@@ -122,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Color.fromRGBO(0, 0, 0, 0.094),
-                        borderRadius: BorderRadius.circular(8)
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -133,9 +136,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Icon(Icons.arrow_downward),
                                 SizedBox(width: 5),
-                                Text("Mínima", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "Mínima",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                                 Spacer(),
-                                Text("${data["tempmin"]}°", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "${data["tempmin"]}°",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -144,9 +153,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Icon(Icons.arrow_upward),
                                 SizedBox(width: 5),
-                                Text("Máxima", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "Máxima",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                                 Spacer(),
-                                Text("${data["tempmax"]}°", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "${data["tempmax"]}°",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -155,9 +170,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Icon(Icons.water_drop),
                                 SizedBox(width: 5),
-                                Text("Humedad", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "Humedad",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                                 Spacer(),
-                                Text("${data["humedad"]}%", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "${data["humedad"]}%",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                               ],
                             ),
                             SizedBox(height: 10),
@@ -166,9 +187,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Icon(Icons.air),
                                 SizedBox(width: 5),
-                                Text("Viento", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "Viento",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                                 Spacer(),
-                                Text("${data["viento"]}km", style: EstiloTextos.textoPequeno2),
+                                Text(
+                                  "${data["viento"]}km",
+                                  style: EstiloTextos.textoPequeno2,
+                                ),
                               ],
                             ),
                           ],
