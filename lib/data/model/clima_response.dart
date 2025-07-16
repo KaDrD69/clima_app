@@ -1,6 +1,7 @@
 class ClimaResponse {
   final String description;
   final String desActual;
+  final double termica;
   final double temp;
   final double tempmin;
   final double tempmax;
@@ -16,6 +17,7 @@ class ClimaResponse {
     required this.description,
     required this.desActual,
     required this.humedad,
+    required this.termica,
     required this.temp,
     required this.tempmin,
     required this.tempmax,
@@ -32,6 +34,7 @@ class ClimaResponse {
       description: json["weather"][0]["description"],
       desActual: json["weather"][0]["main"],
       humedad: json["main"]["humidity"] as int,
+      termica: json["main"]["feels_like"] as double,
       temp: json["main"]["temp"] as double,
       tempmin: json["main"]["temp_min"] as double,
       tempmax: json["main"]["temp_max"] as double,

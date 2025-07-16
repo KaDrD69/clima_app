@@ -3,6 +3,7 @@ import 'dart:ui';
 //import 'package:clima_app/data/model/clima_response.dart';
 import 'package:clima_app/bloc/clima_bloc.dart';
 import 'package:clima_app/presentation/text_styles.dart';
+import 'package:clima_app/presentation/traduccion_campo_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -60,14 +61,14 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.menu),
+                  icon: Icon(Icons.menu, color: Color(0xff333333)),
                   iconSize: 30,
                   color: Colors.white,
                 ),
                 Text("${data["ciudad"]}", style: EstiloTextos.titulo),
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.search),
+                  icon: Icon(Icons.search, color: Color(0xff333333)),
                   iconSize: 30,
                   color: Colors.white,
                 ),
@@ -85,9 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.lightBlueAccent.shade200,
+                  Color(0xFFa6d8f7),
                   Colors.lightBlue.shade200, //Colors.lightBlue.withValues(alpha: 0.5) para opacidad
-                  Colors.lightBlueAccent.shade100,
+                  Color(0xFFf5faff)
+              //    Colors.lightBlueAccent.shade100,
                 ]
               )
               // image: DecorationImage(
@@ -101,6 +103,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 onRefresh: _refresh,
                 child: ListView(
                   children: [
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Color(0xff333333),
+                          borderRadius: BorderRadius.circular(20)
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("${data["fecha"]}", style: EstiloTextos.fecha)
+                          ],
+                        ),
+                      ),
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
@@ -114,10 +134,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         // ),
                         //Image.asset("${data["icono"]}"),
                         Text(
-                          "${data["temp"].toStringAsFixed(0)}°",
+                          "${data["temp"]}°",
                           style: EstiloTextos.textoGrande,
                         ),
-                        Text(data["des"], style: EstiloTextos.textoPequeno1),
+                        Text(TraduccionMain.traducirMain(data["desActual"]), style: EstiloTextos.textoPequeno1,),
+                        Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1),
                       ],
                     ),
                     SizedBox(height: 80),

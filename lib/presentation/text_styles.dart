@@ -5,8 +5,9 @@ class EstiloTextos {
   static final TextStyle titulo = GoogleFonts.roboto(
     color: Color(0xff333333),
     fontSize: 25,
-    fontWeight: FontWeight.bold,
-    shadows: [Shadow(offset: Offset(1, 1), color: Colors.black54, blurRadius: 3)],
+    fontWeight: FontWeight.w500,
+    letterSpacing: -1.0
+    //shadows: [Shadow(offset: Offset(1, 1), color: Colors.black54, blurRadius: 3)],
   );
   static final TextStyle textoGrande = GoogleFonts.roboto(
     color: Color(0xff333333),
@@ -15,16 +16,23 @@ class EstiloTextos {
     shadows: [Shadow(offset: Offset(2, 2), color: Colors.black54, blurRadius: 3)],
     height: 1.0,
   );
-  static final TextStyle textoPequeno1 = GoogleFonts.inter(
-    color: Colors.white,
-    fontSize: 24,
-    fontWeight: FontWeight.normal,
-    shadows: [Shadow(offset: Offset(2, 2), color: Colors.black54, blurRadius: 3)],
+  static final TextStyle textoPequeno1 = GoogleFonts.roboto(
+    color: Color(0xFF555555),
+    fontSize: 22,
+    fontWeight: FontWeight.w500,
+    letterSpacing: -1.0,
+    //shadows: [Shadow(offset: Offset(2, 2), color: Colors.black54, blurRadius: 3)],
     height: 1.0,
   );
   static final TextStyle textoPequeno2 = GoogleFonts.inter(
     color: Colors.white,
     fontSize: 20,
+    fontWeight: FontWeight.normal,
+    height: 1.0,
+  );
+  static final TextStyle fecha = GoogleFonts.roboto(
+    color: Colors.lightBlue.shade100,
+    fontSize: 15,
     fontWeight: FontWeight.normal,
     height: 1.0,
   );

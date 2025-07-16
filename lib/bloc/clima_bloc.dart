@@ -9,15 +9,30 @@ class ClimaBloc {
 
   String _diaSemana = "";
   double _tempFutura = 0;
+  String _fecha = "";
 
   final Map<int, String> _diaNombre = {
     1: "Lunes",
     2: "Martes",
-    3: "Miercoles",
+    3: "Miércoles",
     4: "Jueves",
     5: "Viernes",
     6: "Sábado",
     7: "Domingo",
+  };
+  final Map<int, String> _mesNombre = {
+    1: "Enero",
+    2: "Febrero",
+    3: "Marzo",
+    4: "Abril",
+    5: "Mayo",
+    6: "Junio",
+    7: "Julio",
+    8: "Agosto",
+    9: "Septiembre",
+    10: "Octubre",
+    11: "Noviembre",
+    12: "Diciembre"
   };
 
   final List<Map<String, double>> _pronostico = [];
@@ -33,7 +48,9 @@ class ClimaBloc {
 
     if (clima == null || climaForecast == null) {
       _climaController.sink.add({
+        "fecha": "",
         "temp": 0,
+        "terminca": 0,
         "tempmin": 0,
         "tempmax": 0,
         "humedad": 0,
@@ -71,13 +88,15 @@ class ClimaBloc {
     print(_pronostico);
 
     _climaController.sink.add({
-      //"fecha": climaForecast.fecha,
-      "temp": clima.temp,
-      "tempmin": clima.tempmin,
-      "tempmax": clima.tempmax,
-      "humedad": clima.humedad,
+      "fecha": "${_diaNombre[fecha.weekday]}, ${fecha.day} de ${_mesNombre[fecha.month]}",
+      "temp": clima.temp.toStringAsFixed(0),
+      "termica": clima.termica.toStringAsFixed(0),
+      "tempmin": clima.tempmin.toStringAsFixed(0),
+      "tempmax": clima.tempmax.toStringAsFixed(0),
+      "humedad": clima.humedad.toStringAsFixed(0),
       "viento": clima.speedW,
       "des": clima.description,
+      "desActual": clima.desActual,
       "dt": clima.dt,
       "ciudad": clima.ciudad,
       "dianoche": clima.dt >= clima.amanacer && clima.dt < clima.atardecer
