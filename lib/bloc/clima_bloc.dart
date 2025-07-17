@@ -32,7 +32,7 @@ class ClimaBloc {
     9: "Septiembre",
     10: "Octubre",
     11: "Noviembre",
-    12: "Diciembre"
+    12: "Diciembre",
   };
 
   final List<Map<String, double>> _pronostico = [];
@@ -88,9 +88,12 @@ class ClimaBloc {
     print(_pronostico);
 
     _climaController.sink.add({
-      "fecha": "${_diaNombre[fecha.weekday]}, ${fecha.day} de ${_mesNombre[fecha.month]}",
+      "fecha":
+          "${_diaNombre[fecha.weekday]}, ${fecha.day} de ${_mesNombre[fecha.month]}",
       "temp": clima.temp.toStringAsFixed(0),
-      "termica": clima.termica.toStringAsFixed(0),
+      "termica": clima.termica.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.termica.toStringAsFixed(0),
       "tempmin": clima.tempmin.toStringAsFixed(0),
       "tempmax": clima.tempmax.toStringAsFixed(0),
       "humedad": clima.humedad.toStringAsFixed(0),
@@ -109,7 +112,6 @@ class ClimaBloc {
       "tempDia2": _pronostico[1].values.first,
       "tempDia3": _pronostico[2].values.first,
     });
-
   }
 
   void dispose() {

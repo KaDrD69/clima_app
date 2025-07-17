@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Color(0xff333333),
+                          color: Color(0xff2C3A47),
                           borderRadius: BorderRadius.circular(20)
                         ),
                         child: Row(
@@ -145,80 +145,62 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(0, 0, 0, 0.094),
+                        color: Color.fromRGBO(44, 58, 71, 0.9),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
                               children: [
-                                Icon(Icons.arrow_downward),
-                                SizedBox(width: 5),
-                                Text(
-                                  "Mínima",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
-                                Spacer(),
-                                Text(
-                                  "${data["tempmin"]}°",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
+                                Icon(Icons.arrow_downward, size: 40, color: Colors.white70),
+                                SizedBox(height: 10),
+                                Column(
+                                  children: [
+                                    Text("data", style: EstiloTextos.textoPequeno2),
+                                    Text("Mín", style:EstiloTextos.textoPequeno2)
+                                  ],
+                                )
                               ],
                             ),
-                            SizedBox(height: 10),
-                            Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
                               children: [
-                                Icon(Icons.arrow_upward),
-                                SizedBox(width: 5),
-                                Text(
-                                  "Máxima",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
-                                Spacer(),
-                                Text(
-                                  "${data["tempmax"]}°",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
+                                Icon(Icons.arrow_upward, size: 40, color: Colors.white70),
+                                SizedBox(height: 10),
+                                Column(
+                                  children: [
+                                    Text("data", style:EstiloTextos.textoPequeno2),
+                                    Text("Máx", style:EstiloTextos.textoPequeno2),
+                                  ],
+                                )
                               ],
                             ),
-                            SizedBox(height: 10),
-                            Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
                               children: [
-                                Icon(Icons.water_drop),
-                                SizedBox(width: 5),
-                                Text(
-                                  "Humedad",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
-                                Spacer(),
-                                Text(
-                                  "${data["humedad"]}%",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
+                                Icon(Icons.water_drop, size: 40, color: Colors.white70),
+                                SizedBox(height: 10),
+                                Column(
+                                  children: [
+                                    Text("data", style:EstiloTextos.textoPequeno2),
+                                    Text("Humedad", style:EstiloTextos.textoPequeno2),
+                                  ],
+                                )
                               ],
-                            ),
-                            SizedBox(height: 10),
-                            Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            ),         
+                            Column(
                               children: [
-                                Icon(Icons.air),
-                                SizedBox(width: 5),
-                                Text(
-                                  "Viento",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
-                                Spacer(),
-                                Text(
-                                  "${data["viento"]}km",
-                                  style: EstiloTextos.textoPequeno2,
-                                ),
+                                Icon(Icons.air, size: 40, color: Colors.white70),
+                                SizedBox(height: 10),
+                                Column(
+                                  children: [
+                                    Text("data", style:EstiloTextos.textoPequeno2),
+                                    Text("Viento", style:EstiloTextos.textoPequeno2),
+                                  ],
+                                )
                               ],
-                            ),
+                            ),         
                           ],
                         ),
                       ),
