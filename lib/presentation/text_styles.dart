@@ -36,6 +36,18 @@ class EstiloTextos {
     fontWeight: FontWeight.normal,
     height: 1.0,
   );
+  static final TextStyle textTarjetaGrande = GoogleFonts.roboto(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    height: 1.0,
+  );
+  static final TextStyle textTarjetaPequeno = GoogleFonts.roboto(
+    color: Colors.white,
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+    height: 1.0,
+  );
 
   //questrial
   //inter

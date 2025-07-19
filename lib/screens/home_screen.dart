@@ -159,8 +159,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("data", style: EstiloTextos.textoPequeno2),
-                                    Text("Mín", style:EstiloTextos.textoPequeno2)
+                                    Text("${data["tempmin"]}°", style: EstiloTextos.textTarjetaGrande),
+                                    SizedBox(height: 3),
+                                    Text("Mín", style:EstiloTextos.textTarjetaPequeno)
                                   ],
                                 )
                               ],
@@ -171,8 +172,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("data", style:EstiloTextos.textoPequeno2),
-                                    Text("Máx", style:EstiloTextos.textoPequeno2),
+                                    Text("${data["tempmax"]}°", style:EstiloTextos.textTarjetaGrande),
+                                    SizedBox(height: 3),
+                                    Text("Máx", style:EstiloTextos.textTarjetaPequeno),
                                   ],
                                 )
                               ],
@@ -183,8 +185,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("data", style:EstiloTextos.textoPequeno2),
-                                    Text("Humedad", style:EstiloTextos.textoPequeno2),
+                                    Text("${data["humedad"]}%", style:EstiloTextos.textTarjetaGrande),
+                                    SizedBox(height: 3),
+                                    Text("Humedad", style:EstiloTextos.textTarjetaPequeno),
                                   ],
                                 )
                               ],
@@ -195,8 +198,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("data", style:EstiloTextos.textoPequeno2),
-                                    Text("Viento", style:EstiloTextos.textoPequeno2),
+                                    Text("${data["viento"]}km", style:EstiloTextos.textTarjetaGrande),
+                                    SizedBox(height: 3),
+                                    Text("Viento", style:EstiloTextos.textTarjetaPequeno),
                                   ],
                                 )
                               ],

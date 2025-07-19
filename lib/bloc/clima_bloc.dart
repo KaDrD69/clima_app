@@ -35,7 +35,7 @@ class ClimaBloc {
     12: "Diciembre",
   };
 
-  final List<Map<String, double>> _pronostico = [];
+  final List<Map<String, dynamic>> _pronostico = [];
 
   Stream get stream => _climaController.stream;
 
@@ -81,7 +81,7 @@ class ClimaBloc {
       );
       if (fecha2.hour == 12 && fecha.day != fecha2.day) {
         _diaSemana = _diaNombre[fecha2.weekday] ?? "Sin dato";
-        _tempFutura = item["main"]["temp"] ?? 0;
+        _tempFutura = (item["main"]["temp"] as num).toDouble();
         _pronostico.add({_diaSemana: _tempFutura});
       }
     }
@@ -97,7 +97,7 @@ class ClimaBloc {
       "tempmin": clima.tempmin.toStringAsFixed(0),
       "tempmax": clima.tempmax.toStringAsFixed(0),
       "humedad": clima.humedad.toStringAsFixed(0),
-      "viento": clima.speedW,
+      "viento": (clima.speedW*3.6).toStringAsFixed(1),
       "des": clima.description,
       "desActual": clima.desActual,
       "dt": clima.dt,
