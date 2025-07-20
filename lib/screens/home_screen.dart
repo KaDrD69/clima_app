@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           "${data["temp"]}°",
                           style: EstiloTextos.textoGrande,
                         ),
-                        Text(TraduccionMain.traducirMain(data["desActual"]), style: EstiloTextos.textoPequeno1,),
+                        Text("${data["des"]}.", style: EstiloTextos.textoPequeno1,),
                         Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1),
                       ],
                     ),

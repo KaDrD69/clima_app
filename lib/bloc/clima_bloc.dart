@@ -44,9 +44,10 @@ class ClimaBloc {
 
     final repo = Repository();
     final clima = await repo.fetchClima();
-    final climaForecast = await repo.fetchClimaForecast();
 
-    if (clima == null || climaForecast == null) {
+    //    final climaForecast = await repo.fetchClimaForecast();
+
+    if (clima == null) {
       _climaController.sink.add({
         "fecha": "",
         "temp": 0,
@@ -56,36 +57,54 @@ class ClimaBloc {
         "humedad": 0,
         "viento": 0,
         "des": "",
-        "desActual": "",
-        "dianoche": "",
+        "esdia": 1,
         "ciudad": "",
         "nombreDia1": "",
         "nombreDia2": "",
         "nombreDia3": "",
-        "tempDia1": 0,
-        "tempDia2": 0,
-        "tempDia3": 0,
+        "tempminDia1": 0,
+        "tempminDia2": 0,
+        "tempminDia3": 0,
+        "tempmaxDia1": 0,
+        "tempmaxDia2": 0,
+        "tempmaxDia3": 0,
       });
       return;
     }
 
     DateTime fecha = DateTime.fromMillisecondsSinceEpoch(
-      clima.dt * 1000,
+      clima.localTimeEpoch * 1000,
       isUtc: true,
     );
+    DateTime fecha1 = DateTime.fromMillisecondsSinceEpoch(
+      clima.fecha1 * 1000,
+      isUtc: true,
+    ); 
+    DateTime fecha2 = DateTime.fromMillisecondsSinceEpoch(
+      clima.fecha2 * 1000,
+      isUtc: true,
+    ); 
+    DateTime fecha3 = DateTime.fromMillisecondsSinceEpoch(
+      clima.fecha3 * 1000,
+      isUtc: true,
+    ); 
 
-    for (var item in climaForecast.lista) {
-      DateTime fecha2 = DateTime.fromMillisecondsSinceEpoch(
-        item["dt"] * 1000,
-        isUtc: true,
-      );
-      if (fecha2.hour == 12 && fecha.day != fecha2.day) {
-        _diaSemana = _diaNombre[fecha2.weekday] ?? "Sin dato";
-        _tempFutura = (item["main"]["temp"] as num).toDouble();
-        _pronostico.add({_diaSemana: _tempFutura});
-      }
+    // for (var item in climaForecast.lista) {
+    //   DateTime fecha2 = DateTime.fromMillisecondsSinceEpoch(
+    //     item["dt"] * 1000,
+    //     isUtc: true,
+    //   );
+    //   if (fecha2.hour == 12 && fecha.day != fecha2.day) {
+    //     _diaSemana = _diaNombre[fecha2.weekday] ?? "Sin dato";
+    //     _tempFutura = (item["main"]["temp"] as num).toDouble();
+    //     _pronostico.add({_diaSemana: _tempFutura});
+    //   }
+    // // }
+    // print(_pronostico);
+
+    for (int i=1; i<3; i++){
+
     }
-    print(_pronostico);
 
     _climaController.sink.add({
       "fecha":
@@ -97,20 +116,24 @@ class ClimaBloc {
       "tempmin": clima.tempmin.toStringAsFixed(0),
       "tempmax": clima.tempmax.toStringAsFixed(0),
       "humedad": clima.humedad.toStringAsFixed(0),
-      "viento": (clima.speedW*3.6).toStringAsFixed(1),
+      "viento": clima.speedW.toStringAsFixed(0),
       "des": clima.description,
-      "desActual": clima.desActual,
-      "dt": clima.dt,
+      "esdia": clima.esDia,
+      //"desActual": clima.desActual,
+      //"dt": clima.dt,
       "ciudad": clima.ciudad,
-      "dianoche": clima.dt >= clima.amanacer && clima.dt < clima.atardecer
-          ? "dia"
-          : "noche",
-      "nombreDia1": _pronostico[0].keys.first,
-      "nombreDia2": _pronostico[1].keys.first,
-      "nombreDia3": _pronostico[2].keys.first,
-      "tempDia1": _pronostico[0].values.first,
-      "tempDia2": _pronostico[1].values.first,
-      "tempDia3": _pronostico[2].values.first,
+      // "dianoche": clima.dt >= clima.amanacer && clima.dt < clima.atardecer
+      //     ? "dia"
+      //     : "noche",
+      "nombreDia1": _diaNombre[fecha1.weekday],
+      "nombreDia2": _diaNombre[fecha2.weekday],
+      "nombreDia3": _diaNombre[fecha3.weekday],
+      "tempminDia1": clima.tempmin1,
+      "tempminDia2": clima.tempmin2,
+      "tempminDia3": clima.tempmin3,
+      "tempmaxDia1": clima.tempmax1,
+      "tempmaxDia2": clima.tempmax2,
+      "tempmaxDia3": clima.tempmax3,
     });
   }
 

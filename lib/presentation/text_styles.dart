@@ -18,7 +18,7 @@ class EstiloTextos {
   );
   static final TextStyle textoPequeno1 = GoogleFonts.roboto(
     color: Color(0xff2C3A47),
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w500,
     letterSpacing: -1.0,
     //shadows: [Shadow(offset: Offset(2, 2), color: Colors.black54, blurRadius: 3)],
