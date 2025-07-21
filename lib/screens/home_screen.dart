@@ -121,25 +121,37 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SizedBox(height: 60),
-                        // IconButton(
-                        //   icon: Icon(Icons.refresh),
-                        //   onPressed: () {
-                        //     climaBloc.cargarClima();
-                        //   },
-                        // ),
-                        //Image.asset("${data["icono"]}"),
-                        Text(
-                          "${data["temp"]}°",
-                          style: EstiloTextos.textoGrande,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(height: 60),
+                            // IconButton(
+                            //   icon: Icon(Icons.refresh),
+                            //   onPressed: () {
+                            //     climaBloc.cargarClima();
+                            //   },
+                            // ),
+                            //Image.asset("${data["icono"]}"),
+                            Text(
+                              "${data["temp"]}°",
+                              style: EstiloTextos.textoGrande,
+                            ),
+                            Text("${data["des"]}.", style: EstiloTextos.textoPequeno1,),
+                            Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1),
+                          ],
                         ),
-                        Text("${data["des"]}.", style: EstiloTextos.textoPequeno1,),
-                        Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1),
+                        Column(
+                          children: [
+                            Text("Mínima"),
+                            Text("Máxima")
+                          ],
+                        )
                       ],
+                      
                     ),
                     SizedBox(height: 80),
                     Container(
