@@ -121,39 +121,66 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(height: 60),
-                            // IconButton(
-                            //   icon: Icon(Icons.refresh),
-                            //   onPressed: () {
-                            //     climaBloc.cargarClima();
-                            //   },
-                            // ),
-                            //Image.asset("${data["icono"]}"),
-                            Text(
-                              "${data["temp"]}°",
-                              style: EstiloTextos.textoGrande,
-                            ),
-                            Text("${data["des"]}.", style: EstiloTextos.textoPequeno1,),
-                            Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text("Mínima"),
-                            Text("Máxima")
-                          ],
-                        )
-                      ],
-                      
+                    Container(
+                      margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(height: 30),
+                              // IconButton(
+                              //   icon: Icon(Icons.refresh),
+                              //   onPressed: () {
+                              //     climaBloc.cargarClima();
+                              //   },
+                              // ),
+                              //Image.asset("${data["icono"]}"),
+                              Text(
+                                "${data["temp"]}°",
+                                style: EstiloTextos.textoGrande(context),
+                              ),
+                              //Text("${data["des"]}", style: EstiloTextos.textoPequeno1,),
+                              //Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text("Mín ${data["tempmin"]}°", style: EstiloTextos.textoMinMax),
+                              SizedBox(height: 4),
+                              Text("Máx ${data["tempmax"]}°", style: EstiloTextos.textoMinMax)
+                            ],
+                          )
+                        ],
+                        
+                      ),
                     ),
-                    SizedBox(height: 80),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1)
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text("${data["des"]}", style: EstiloTextos.textoPequeno1)
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    //SizedBox(height: 80),
                     Container(
                       margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(
@@ -167,26 +194,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Column(
                               children: [
-                                Icon(Icons.arrow_downward, size: 40, color: Colors.white70),
+                                Icon(Icons.wb_sunny, size: 40, color: Colors.white70),
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("${data["tempmin"]}°", style: EstiloTextos.textTarjetaGrande),
+                                    Text("${data["uv"]}", style:EstiloTextos.textTarjetaGrande),
                                     SizedBox(height: 3),
-                                    Text("Mín", style:EstiloTextos.textTarjetaPequeno)
-                                  ],
-                                )
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Icon(Icons.arrow_upward, size: 40, color: Colors.white70),
-                                SizedBox(height: 10),
-                                Column(
-                                  children: [
-                                    Text("${data["tempmax"]}°", style:EstiloTextos.textTarjetaGrande),
-                                    SizedBox(height: 3),
-                                    Text("Máx", style:EstiloTextos.textTarjetaPequeno),
+                                    Text("UV", style:EstiloTextos.textTarjetaPequeno),
                                   ],
                                 )
                               ],
@@ -217,6 +231,36 @@ class _HomeScreenState extends State<HomeScreen> {
                                 )
                               ],
                             ),         
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(44, 58, 71, 0.9),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                                Row(
+                                  children: [
+                                    Text("data")
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text("data")
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text("data")
+                                  ],
+                                ) 
                           ],
                         ),
                       ),

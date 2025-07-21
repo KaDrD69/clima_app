@@ -50,6 +50,7 @@ class ClimaBloc {
     if (clima == null) {
       _climaController.sink.add({
         "fecha": "",
+        "uv":0,
         "temp": 0,
         "terminca": 0,
         "tempmin": 0,
@@ -102,10 +103,6 @@ class ClimaBloc {
     // // }
     // print(_pronostico);
 
-    for (int i=1; i<3; i++){
-
-    }
-
     _climaController.sink.add({
       "fecha":
           "${_diaNombre[fecha.weekday]}, ${fecha.day} de ${_mesNombre[fecha.month]}",
@@ -119,6 +116,7 @@ class ClimaBloc {
       "viento": clima.speedW.toStringAsFixed(0),
       "des": clima.description,
       "esdia": clima.esDia,
+      "uv": clima.uv,
       //"desActual": clima.desActual,
       //"dt": clima.dt,
       "ciudad": clima.ciudad,
