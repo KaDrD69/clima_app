@@ -248,16 +248,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                                 Row(
                                   children: [
+                                    Text("data"),
+                                    Text("data"),
                                     Text("data")
                                   ],
                                 ),
                                 Row(
                                   children: [
+                                    Text("data"),
+                                    Text("data"),
                                     Text("data")
                                   ],
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Text("data"),
+                                    Text("data"),
                                     Text("data")
                                   ],
                                 ) 
