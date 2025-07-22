@@ -87,16 +87,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Color(0xFFa6d8f7),
-                  Colors.lightBlue.shade200, //Colors.lightBlue.withValues(alpha: 0.5) para opacidad
-                  Color(0xFFf5faff)
-              //    Colors.lightBlueAccent.shade100,
-                ]
-              )
+                  Colors
+                      .lightBlue
+                      .shade200, //Colors.lightBlue.withValues(alpha: 0.5) para opacidad
+                  Color(0xFFf5faff),
+                  //    Colors.lightBlueAccent.shade100,
+                ],
+              ),
               // image: DecorationImage(
               //   image: AssetImage("assets/fondo/few_clouds_dia.png"),
               //   fit: BoxFit.cover,
-              ),
-            
+            ),
+
             child: Container(
               color: Color.fromRGBO(0, 0, 0, 0.2),
               child: RefreshIndicator(
@@ -110,13 +112,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: Color(0xff2C3A47),
-                          borderRadius: BorderRadius.circular(20)
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("${data["fecha"]}", style: EstiloTextos.fecha)
+                            Text("${data["fecha"]}", style: EstiloTextos.fecha),
                           ],
                         ),
                       ),
@@ -130,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SizedBox(height: 30),
+                              SizedBox(height: 60),
                               // IconButton(
                               //   icon: Icon(Icons.refresh),
                               //   onPressed: () {
@@ -149,13 +151,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text("Mín ${data["tempmin"]}°", style: EstiloTextos.textoMinMax),
+                              Text(
+                                "Mín ${data["tempmin"]}°",
+                                style: EstiloTextos.textoMinMax,
+                              ),
                               SizedBox(height: 4),
-                              Text("Máx ${data["tempmax"]}°", style: EstiloTextos.textoMinMax)
+                              Text(
+                                "Máx ${data["tempmax"]}°",
+                                style: EstiloTextos.textoMinMax,
+                              ),
                             ],
-                          )
+                          ),
                         ],
-                        
                       ),
                     ),
                     Row(
@@ -167,20 +174,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Row(
                                 children: [
-                                  Text("Sensación Térmica: ${data["termica"]}°", style: EstiloTextos.textoPequeno1)
+                                  Text(
+                                    "Sensación Térmica: ${data["termica"]}°",
+                                    style: EstiloTextos.textoPequeno1,
+                                  ),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Text("${data["des"]}", style: EstiloTextos.textoPequeno1)
+                                  Text(
+                                    "${data["des"]}",
+                                    style: EstiloTextos.textoPequeno1,
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    //SizedBox(height: 80),
+                    SizedBox(height: 30),
                     Container(
                       margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(
@@ -194,80 +207,146 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Column(
                               children: [
-                                Icon(Icons.wb_sunny, size: 40, color: Colors.white70),
+                                Icon(
+                                  Icons.wb_sunny,
+                                  size: 40,
+                                  color: Colors.white70,
+                                ),
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("${data["uv"]}", style:EstiloTextos.textTarjetaGrande),
+                                    Text(
+                                      "${data["uv"]}",
+                                      style: EstiloTextos.textTarjetaGrande,
+                                    ),
                                     SizedBox(height: 3),
-                                    Text("UV", style:EstiloTextos.textTarjetaPequeno),
+                                    Text(
+                                      "UV",
+                                      style: EstiloTextos.textTarjetaPequeno1,
+                                    ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                             Column(
                               children: [
-                                Icon(Icons.water_drop, size: 40, color: Colors.white70),
+                                Icon(
+                                  Icons.water_drop,
+                                  size: 40,
+                                  color: Colors.white70,
+                                ),
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("${data["humedad"]}%", style:EstiloTextos.textTarjetaGrande),
+                                    Text(
+                                      "${data["humedad"]}%",
+                                      style: EstiloTextos.textTarjetaGrande,
+                                    ),
                                     SizedBox(height: 3),
-                                    Text("Humedad", style:EstiloTextos.textTarjetaPequeno),
+                                    Text(
+                                      "Humedad",
+                                      style: EstiloTextos.textTarjetaPequeno1,
+                                    ),
                                   ],
-                                )
+                                ),
                               ],
-                            ),         
+                            ),
                             Column(
                               children: [
-                                Icon(Icons.air, size: 40, color: Colors.white70),
+                                Icon(
+                                  Icons.air,
+                                  size: 40,
+                                  color: Colors.white70,
+                                ),
                                 SizedBox(height: 10),
                                 Column(
                                   children: [
-                                    Text("${data["viento"]}km", style:EstiloTextos.textTarjetaGrande),
+                                    Text(
+                                      "${data["viento"]}km",
+                                      style: EstiloTextos.textTarjetaGrande,
+                                    ),
                                     SizedBox(height: 3),
-                                    Text("Viento", style:EstiloTextos.textTarjetaPequeno),
+                                    Text(
+                                      "Viento",
+                                      style: EstiloTextos.textTarjetaPequeno1,
+                                    ),
                                   ],
-                                )
+                                ),
                               ],
-                            ),         
+                            ),
                           ],
                         ),
                       ),
                     ),
+                    Container(height: 1, margin: EdgeInsets.fromLTRB(20, 0, 20, 0),color: Colors.grey[300]),
                     Container(
                       margin: EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(44, 58, 71, 0.9),
+                        //color: Color.fromRGBO(255, 255, 255, 0.898),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: Column(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                                Row(
-                                  children: [
-                                    Text("data"),
-                                    Text("data"),
-                                    Text("data")
-                                  ],
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${data["nombreDia1"]}",
+                                  style: EstiloTextos.textTarjetaPequeno2,
                                 ),
-                                Row(
-                                  children: [
-                                    Text("data"),
-                                    Text("data"),
-                                    Text("data")
-                                  ],
+                                SizedBox(height: 15),
+                                Text(
+                                  "${data["nombreDia2"]}",
+                                  style: EstiloTextos.textTarjetaPequeno2,
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("data"),
-                                    Text("data"),
-                                    Text("data")
-                                  ],
-                                ) 
+                                SizedBox(height: 15),
+                                Text(
+                                  "${data["nombreDia3"]}",
+                                  style: EstiloTextos.textTarjetaPequeno2,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "${data["tempminDia1"]}°/${data["tempmaxDia1"]}     ",
+                                  style: EstiloTextos.textTarjetaPequeno2,
+                                ),
+                                SizedBox(height: 15),
+                                Text(
+                                  "${data["tempminDia2"]}°/${data["tempmaxDia2"]}     ",
+                                  style: EstiloTextos.textTarjetaPequeno2,
+                                ),
+                                SizedBox(height: 15),
+                                Text(
+                                  "${data["tempminDia3"]}°/${data["tempmaxDia3"]}     ",
+                                  style: EstiloTextos.textTarjetaPequeno2,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "${data["maxWindDia1"]}",
+                                  style: EstiloTextos.textTarjetaPequeno2,
+                                ),
+                                SizedBox(height: 15),
+                                Text(
+                                  "${data["maxWindDia2"]}",
+                                  style: EstiloTextos.textTarjetaPequeno2,
+                                ),
+                                SizedBox(height: 15),
+                                Text(
+                                  "${data["maxWindDia3"]}",
+                                  style: EstiloTextos.textTarjetaPequeno2,
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -281,4 +360,394 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
   }
-}
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

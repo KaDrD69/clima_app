@@ -69,6 +69,9 @@ class ClimaBloc {
         "tempmaxDia1": 0,
         "tempmaxDia2": 0,
         "tempmaxDia3": 0,
+        "maxWindDia1":0,
+        "maxWindDia2":0,
+        "maxWindDia3":0,
       });
       return;
     }
@@ -132,6 +135,9 @@ class ClimaBloc {
       "tempmaxDia1": clima.tempmax1,
       "tempmaxDia2": clima.tempmax2,
       "tempmaxDia3": clima.tempmax3,
+      "maxWindDia1": clima.maxWindDia1,
+      "maxWindDia2": clima.maxWindDia1,
+      "maxWindDia3": clima.maxWindDia1
     });
   }
 

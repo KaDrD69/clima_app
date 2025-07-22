@@ -59,7 +59,7 @@ class EstiloTextos {
     fontWeight: FontWeight.bold,
     height: 1.0,
   );
-  static final TextStyle textTarjetaPequeno = GoogleFonts.roboto(
+  static final TextStyle textTarjetaPequeno1 = GoogleFonts.roboto(
     color: Colors.white,
     fontSize: 12,
     fontWeight: FontWeight.normal,
@@ -70,6 +70,12 @@ class EstiloTextos {
     fontSize: 22,
     fontWeight: FontWeight.bold,
     //shadows: [Shadow(offset: Offset(2, 2), color: Colors.black54, blurRadius: 3)],
+    height: 1.0,
+  );
+  static final TextStyle textTarjetaPequeno2 = GoogleFonts.roboto(
+    color: Color(0xff2C3A47),
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
     height: 1.0,
   );
 

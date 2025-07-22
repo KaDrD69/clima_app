@@ -11,6 +11,9 @@ class ClimaResponse {
   final double tempmax1;
   final double tempmax2;
   final double tempmax3;
+  final double maxWindDia1;
+  final double maxWindDia2;
+  final double maxWindDia3;
   final double speedW;
   final double uv;
   final int humedad;
@@ -40,6 +43,9 @@ class ClimaResponse {
     required this.tempmax1,
     required this.tempmax2,
     required this.tempmax3,
+    required this.maxWindDia1,
+    required this.maxWindDia2,
+    required this.maxWindDia3,
     required this.speedW,
     required this.localTimeEpoch,
     required this.esDia,
@@ -74,6 +80,9 @@ class ClimaResponse {
       tempmax1: json["forecast"]["forecastday"][1]["day"]["maxtemp_c"] as double,
       tempmax2: json["forecast"]["forecastday"][2]["day"]["maxtemp_c"] as double,
       tempmax3: json["forecast"]["forecastday"][3]["day"]["maxtemp_c"] as double,
+      maxWindDia1: json["forecast"]["forecastday"][1]["day"]["maxwind_kph"] as double,
+      maxWindDia2: json["forecast"]["forecastday"][2]["day"]["maxwind_kph"] as double,
+      maxWindDia3: json["forecast"]["forecastday"][3]["day"]["maxwind_kph"] as double,
       fecha1: json["forecast"]["forecastday"][1]["date_epoch"] as int,
       fecha2: json["forecast"]["forecastday"][2]["date_epoch"] as int,
       fecha3: json["forecast"]["forecastday"][3]["date_epoch"] as int     
