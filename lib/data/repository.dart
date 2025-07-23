@@ -6,8 +6,7 @@ import 'package:http/http.dart' as http;
 
 class Repository {
 
-  Future<ClimaResponse?> fetchClima() async {
-    const String ciudad = "Punta Arenas";
+  Future<ClimaResponse?> fetchClima(String ciudad) async {
     //final response = await http.get(Uri.parse('https://www.google.com'));
     //print('Status code Google: ${response.statusCode}');
     //final urlNow = "https://api.openweathermap.org/data/2.5/weather?q=$ciudad&appid=${ApiKey.apiKey2}&units=metric&lang=es";

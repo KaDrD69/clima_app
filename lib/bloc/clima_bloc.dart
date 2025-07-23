@@ -6,7 +6,8 @@ import 'package:clima_app/data/repository.dart';
 
 class ClimaBloc {
   final _climaController = StreamController();
-
+  final _ciudadController = StreamController();
+  final repo = Repository();
 
   final Map<int, String> _diaNombre = {
     1: "Lunes",
@@ -35,19 +36,26 @@ class ClimaBloc {
   final List<Map<String, dynamic>> _pronostico = [];
 
   Stream get stream => _climaController.stream;
+  Sink get ciudadSink => _ciudadController.sink;
 
-  Future<void> cargarClima() async {
+  ClimaBloc() {
+    _ciudadController.stream.listen((ciudad) {
+      cargarClima(ciudad: ciudad);
+    });
+    cargarClima();
+  }
+
+  Future<void> cargarClima({String ciudad = "Punta Arenas"}) async {
     _pronostico.clear();
 
-    final repo = Repository();
-    final clima = await repo.fetchClima();
+    final clima = await repo.fetchClima(ciudad);
 
     //    final climaForecast = await repo.fetchClimaForecast();
 
     if (clima == null) {
       _climaController.sink.add({
         "fecha": "",
-        "uv":0,
+        "uv": 0,
         "temp": 0,
         "terminca": 0,
         "tempmin": 0,
@@ -66,9 +74,9 @@ class ClimaBloc {
         "tempmaxDia1": 0,
         "tempmaxDia2": 0,
         "tempmaxDia3": 0,
-        "maxWindDia1":0,
-        "maxWindDia2":0,
-        "maxWindDia3":0,
+        "maxWindDia1": 0,
+        "maxWindDia2": 0,
+        "maxWindDia3": 0,
       });
       return;
     }
@@ -80,15 +88,15 @@ class ClimaBloc {
     DateTime fecha1 = DateTime.fromMillisecondsSinceEpoch(
       clima.fecha1 * 1000,
       isUtc: true,
-    ); 
+    );
     DateTime fecha2 = DateTime.fromMillisecondsSinceEpoch(
       clima.fecha2 * 1000,
       isUtc: true,
-    ); 
+    );
     DateTime fecha3 = DateTime.fromMillisecondsSinceEpoch(
       clima.fecha3 * 1000,
       isUtc: true,
-    ); 
+    );
 
     // for (var item in climaForecast.lista) {
     //   DateTime fecha2 = DateTime.fromMillisecondsSinceEpoch(
@@ -146,11 +154,12 @@ class ClimaBloc {
           : clima.tempmax3.toStringAsFixed(0),
       "maxWindDia1": clima.maxWindDia1.toStringAsFixed(0),
       "maxWindDia2": clima.maxWindDia2.toStringAsFixed(0),
-      "maxWindDia3": clima.maxWindDia3.toStringAsFixed(0)
+      "maxWindDia3": clima.maxWindDia3.toStringAsFixed(0),
     });
   }
 
   void dispose() {
     _climaController.close();
+    _ciudadController.close();
   }
 }
