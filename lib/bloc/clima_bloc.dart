@@ -7,9 +7,6 @@ import 'package:clima_app/data/repository.dart';
 class ClimaBloc {
   final _climaController = StreamController();
 
-  String _diaSemana = "";
-  double _tempFutura = 0;
-  String _fecha = "";
 
   final Map<int, String> _diaNombre = {
     1: "Lunes",
@@ -129,15 +126,27 @@ class ClimaBloc {
       "nombreDia1": _diaNombre[fecha1.weekday],
       "nombreDia2": _diaNombre[fecha2.weekday],
       "nombreDia3": _diaNombre[fecha3.weekday],
-      "tempminDia1": clima.tempmin1,
-      "tempminDia2": clima.tempmin2,
-      "tempminDia3": clima.tempmin3,
-      "tempmaxDia1": clima.tempmax1,
-      "tempmaxDia2": clima.tempmax2,
-      "tempmaxDia3": clima.tempmax3,
-      "maxWindDia1": clima.maxWindDia1,
-      "maxWindDia2": clima.maxWindDia1,
-      "maxWindDia3": clima.maxWindDia1
+      "tempminDia1": clima.tempmin1.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmin1.toStringAsFixed(0),
+      "tempminDia2": clima.tempmin2.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmin2.toStringAsFixed(0),
+      "tempminDia3": clima.tempmin3.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmin3.toStringAsFixed(0),
+      "tempmaxDia1": clima.tempmax1.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmax1.toStringAsFixed(0),
+      "tempmaxDia2": clima.tempmax2.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmax2.toStringAsFixed(0),
+      "tempmaxDia3": clima.tempmax3.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmax3.toStringAsFixed(0),
+      "maxWindDia1": clima.maxWindDia1.toStringAsFixed(0),
+      "maxWindDia2": clima.maxWindDia2.toStringAsFixed(0),
+      "maxWindDia3": clima.maxWindDia3.toStringAsFixed(0)
     });
   }
 

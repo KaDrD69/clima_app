@@ -310,21 +310,36 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
-                                  "${data["tempminDia1"]}°/${data["tempmaxDia1"]}     ",
-                                  style: EstiloTextos.textTarjetaPequeno2,
+                                Row(
+                                  children: [
+                                    Text(
+                                      "${data["tempminDia1"]}°/${data["tempmaxDia1"]}  ",
+                                      style: EstiloTextos.textTarjetaPequeno2,
+                                    ),
+                                    Icon(Icons.thermostat),
+                                  ],
                                 ),
                                 SizedBox(height: 15),
-                                Text(
-                                  "${data["tempminDia2"]}°/${data["tempmaxDia2"]}     ",
-                                  style: EstiloTextos.textTarjetaPequeno2,
+                                Row(
+                                  children: [
+                                    Text(
+                                      "${data["tempminDia2"]}°/${data["tempmaxDia2"]}  ",
+                                      style: EstiloTextos.textTarjetaPequeno2,
+                                    ),
+                                    Icon(Icons.thermostat),
+                                  ],
                                 ),
                                 SizedBox(height: 15),
-                                Text(
-                                  "${data["tempminDia3"]}°/${data["tempmaxDia3"]}     ",
-                                  style: EstiloTextos.textTarjetaPequeno2,
+                                Row(
+                                  children: [
+                                    Text(
+                                      "${data["tempminDia3"]}°/${data["tempmaxDia3"]}  ",
+                                      style: EstiloTextos.textTarjetaPequeno2,
+                                    ),
+                                    Icon(Icons.thermostat),
+                                  ],
                                 ),
                               ],
                             ),
@@ -332,17 +347,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "${data["maxWindDia1"]}",
+                                  "${data["maxWindDia1"]}km",
                                   style: EstiloTextos.textTarjetaPequeno2,
                                 ),
                                 SizedBox(height: 15),
                                 Text(
-                                  "${data["maxWindDia2"]}",
+                                  "${data["maxWindDia2"]}km",
                                   style: EstiloTextos.textTarjetaPequeno2,
                                 ),
                                 SizedBox(height: 15),
                                 Text(
-                                  "${data["maxWindDia3"]}",
+                                  "${data["maxWindDia3"]}km",
                                   style: EstiloTextos.textTarjetaPequeno2,
                                 ),
                               ],
