@@ -1,6 +1,5 @@
 class ClimaResponse {
   final String description;
-//  final String desActual;
   final double termica;
   final double temp;
   final double tempmin;
@@ -19,9 +18,8 @@ class ClimaResponse {
   final int humedad;
   final int localTimeEpoch;
   final int esDia;
-//  final int amanacer;
-//  final int atardecer;
-//  final int id;
+  final String amanecer;
+  final String atardecer;
   final String localTime;
   final String ciudad;
   final int fecha1;
@@ -53,7 +51,9 @@ class ClimaResponse {
     required this.ciudad,
     required this.fecha1,
     required this.fecha2,
-    required this.fecha3
+    required this.fecha3,
+    required this.amanecer,
+    required this.atardecer,
   });
 
   factory ClimaResponse.fromJson(Map<String, dynamic> json) {
@@ -85,7 +85,9 @@ class ClimaResponse {
       maxWindDia3: json["forecast"]["forecastday"][3]["day"]["maxwind_kph"] as double,
       fecha1: json["forecast"]["forecastday"][1]["date_epoch"] as int,
       fecha2: json["forecast"]["forecastday"][2]["date_epoch"] as int,
-      fecha3: json["forecast"]["forecastday"][3]["date_epoch"] as int     
+      fecha3: json["forecast"]["forecastday"][3]["date_epoch"] as int,
+      amanecer: json["forecast"]["forecastday"][0]["astro"]["sunrise"] as String,     
+      atardecer: json["forecast"]["forecastday"][0]["astro"]["sunset"] as String,     
     );
   }
 }

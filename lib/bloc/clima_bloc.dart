@@ -77,6 +77,8 @@ class ClimaBloc {
         "maxWindDia1": 0,
         "maxWindDia2": 0,
         "maxWindDia3": 0,
+        "amanecer": "",
+        "atardecer": ""
       });
       return;
     }
@@ -155,6 +157,8 @@ class ClimaBloc {
       "maxWindDia1": clima.maxWindDia1.toStringAsFixed(0),
       "maxWindDia2": clima.maxWindDia2.toStringAsFixed(0),
       "maxWindDia3": clima.maxWindDia3.toStringAsFixed(0),
+      "amanecer": clima.amanecer,
+      "atardecer": clima.atardecer
     });
   }
 

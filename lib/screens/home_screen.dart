@@ -195,13 +195,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 30,
                                 width:  MediaQuery.of(context).size.width - 40,
                                 child: Marquee(
-                                  text: "${data["des"]}",
+                                  text: "${data["des"]} / amanecer: ${data["amanecer"]} / atardecer: ${data["atardecer"]}",                                 
                                   style: EstiloTextos.textoPequeno1,
                                   velocity: 20,
                                   blankSpace: 120,
                                   //showFadingOnlyWhenScrolling: true,
-                                  fadingEdgeEndFraction: 0.2,
-                                  fadingEdgeStartFraction: 0.2,
+                                  fadingEdgeEndFraction: 0.5,
+                                  fadingEdgeStartFraction: 0.5,
 
                                 ),
                               ),

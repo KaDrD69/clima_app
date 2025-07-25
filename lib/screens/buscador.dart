@@ -14,11 +14,7 @@ class DataSearch extends SearchDelegate<String> {
     "Santiago",
   ];
 
-  final List<String> ciudadesRecientes = [
-    "Buenos Aires",
-    "Madrid",
-    "Lima",
-  ];
+  final List<String> ciudadesRecientes = ["Buenos Aires", "Madrid", "Lima"];
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -49,13 +45,17 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      close(context, query);
+    });
+    return Container();
     // Aquí puedes devolver una nueva pantalla, o hacer algo con la selección
-    return Center(
-      child: Text(
-        "Has seleccionado: $query",
-        style: TextStyle(fontSize: 20),
-      ),
-    );
+    // return Center(
+    //   child: Text(
+    //     "Has seleccionado: $query",
+    //     style: TextStyle(fontSize: 20),
+    //   ),
+    // );
   }
 
   @override
@@ -63,7 +63,9 @@ class DataSearch extends SearchDelegate<String> {
     // Sugerencias en tiempo real
     final suggestionList = query.isEmpty
         ? ciudadesRecientes
-        : ciudades.where((c) => c.toLowerCase().startsWith(query.toLowerCase())).toList();
+        : ciudades
+              .where((c) => c.toLowerCase().startsWith(query.toLowerCase()))
+              .toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,
@@ -73,7 +75,10 @@ class DataSearch extends SearchDelegate<String> {
           title: RichText(
             text: TextSpan(
               text: ciudad.substring(0, query.length),
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
               children: [
                 TextSpan(
                   text: ciudad.substring(query.length),
