@@ -8,6 +8,7 @@ import 'package:clima_app/screens/buscador.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:marquee/marquee.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -190,13 +191,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "${data["des"]}",
-                                    style: EstiloTextos.textoPequeno1,
-                                  ),
-                                ],
+                              SizedBox(
+                                height: 30,
+                                width:  MediaQuery.of(context).size.width - 40,
+                                child: Marquee(
+                                  text: "${data["des"]}",
+                                  style: EstiloTextos.textoPequeno1,
+                                  velocity: 20,
+                                  blankSpace: 120,
+                                  //showFadingOnlyWhenScrolling: true,
+                                  fadingEdgeEndFraction: 0.2,
+                                  fadingEdgeStartFraction: 0.2,
+
+                                ),
                               ),
                             ],
                           ),
