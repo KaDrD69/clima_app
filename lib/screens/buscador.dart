@@ -1,6 +1,27 @@
+import 'package:clima_app/presentation/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class DataSearch extends SearchDelegate<String> {
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    final ThemeData baseTheme = Theme.of(context);
+    return baseTheme.copyWith(
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.black, // Fondo del AppBar
+        iconTheme: IconThemeData(color: Colors.white), // Íconos (flecha, etc.)
+        titleTextStyle:
+            EstiloTextos.textTarjetaPequeno1, // Texto en campo de búsqueda
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        hintStyle: TextStyle(color: Colors.white70), // Hint (texto gris claro)
+      ),
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(color: Colors.white), // Texto que escribís
+      ),
+    );
+  }
+
   final List<String> ciudades = [
     "Buenos Aires",
     "Barcelona",
@@ -67,32 +88,35 @@ class DataSearch extends SearchDelegate<String> {
               .where((c) => c.toLowerCase().startsWith(query.toLowerCase()))
               .toList();
 
-    return ListView.builder(
-      itemCount: suggestionList.length,
-      itemBuilder: (context, index) {
-        final ciudad = suggestionList[index];
-        return ListTile(
-          title: RichText(
-            text: TextSpan(
-              text: ciudad.substring(0, query.length),
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-              children: [
-                TextSpan(
-                  text: ciudad.substring(query.length),
-                  style: TextStyle(color: Colors.grey),
+    return Container(
+      color: Colors.black,
+      child: ListView.builder(
+        itemCount: suggestionList.length,
+        itemBuilder: (context, index) {
+          final ciudad = suggestionList[index];
+          return ListTile(
+            title: RichText(
+              text: TextSpan(
+                text: ciudad.substring(0, query.length),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
-              ],
+                children: [
+                  TextSpan(
+                    text: ciudad.substring(query.length),
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
-          ),
-          onTap: () {
-            query = ciudad;
-            showResults(context); // Muestra buildResults
-          },
-        );
-      },
+            onTap: () {
+              query = ciudad;
+              showResults(context); // Muestra buildResults
+            },
+          );
+        },
+      ),
     );
   }
 }

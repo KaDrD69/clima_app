@@ -4,11 +4,10 @@ import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp
-    ]).then((_) {
-      runApp(const MainApp());
-    });
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_,)
+  {
+    runApp(const MainApp());
+  });
 }
 
 class MainApp extends StatelessWidget {
@@ -18,7 +17,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen() 
+      home: HomeScreen(),
     );
   }
 }

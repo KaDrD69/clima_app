@@ -74,8 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       context: context,
                       delegate: DataSearch(),
                     );
-                    print("aca va la ciudad");
-                    if (resultado != null && resultado.isNotEmpty){
+                    if (resultado != null && resultado.isNotEmpty) {
                       climaBloc.ciudadSink.add(resultado);
                     }
                   },
@@ -98,16 +97,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Color(0xFFa6d8f7),
-                  Colors
-                      .lightBlue
-                      .shade200, //Colors.lightBlue.withValues(alpha: 0.5) para opacidad
+                  Colors.lightBlue.shade200,
                   Color(0xFFf5faff),
-                  //    Colors.lightBlueAccent.shade100,
                 ],
               ),
-              // image: DecorationImage(
-              //   image: AssetImage("assets/fondo/few_clouds_dia.png"),
-              //   fit: BoxFit.cover,
             ),
 
             child: Container(
@@ -193,16 +186,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               SizedBox(
                                 height: 30,
-                                width:  MediaQuery.of(context).size.width - 40,
+                                width: MediaQuery.of(context).size.width - 40,
                                 child: Marquee(
-                                  text: "${data["des"]} / amanecer: ${data["amanecer"]} / atardecer: ${data["atardecer"]}",                                 
+                                  text:
+                                      "${data["des"]} / amanecer: ${data["amanecer"]} / atardecer: ${data["atardecer"]}",
                                   style: EstiloTextos.textoPequeno1,
                                   velocity: 20,
                                   blankSpace: 120,
                                   //showFadingOnlyWhenScrolling: true,
                                   fadingEdgeEndFraction: 0.5,
                                   fadingEdgeStartFraction: 0.5,
-
                                 ),
                               ),
                             ],

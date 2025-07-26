@@ -8,6 +8,7 @@ class ClimaBloc {
   final _climaController = StreamController();
   final _ciudadController = StreamController();
   final repo = Repository();
+  String _ciudadActual = "Punta Arenas";
 
   final Map<int, String> _diaNombre = {
     1: "Lunes",
@@ -40,15 +41,19 @@ class ClimaBloc {
 
   ClimaBloc() {
     _ciudadController.stream.listen((ciudad) {
+      _ciudadActual = ciudad;
       cargarClima(ciudad: ciudad);
     });
     cargarClima();
   }
 
-  Future<void> cargarClima({String ciudad = "Punta Arenas"}) async {
+  Future<void> cargarClima({String? ciudad}) async {
     _pronostico.clear();
+    final ciudadUsada = ciudad ?? _ciudadActual;
 
-    final clima = await repo.fetchClima(ciudad);
+    _ciudadActual = ciudadUsada;
+
+    final clima = await repo.fetchClima(ciudadUsada);
 
     //    final climaForecast = await repo.fetchClimaForecast();
 
@@ -78,7 +83,7 @@ class ClimaBloc {
         "maxWindDia2": 0,
         "maxWindDia3": 0,
         "amanecer": "",
-        "atardecer": ""
+        "atardecer": "",
       });
       return;
     }
@@ -116,12 +121,18 @@ class ClimaBloc {
     _climaController.sink.add({
       "fecha":
           "${_diaNombre[fecha.weekday]}, ${fecha.day} de ${_mesNombre[fecha.month]}",
-      "temp": clima.temp.toStringAsFixed(0),
+      "temp": clima.temp.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.temp.toStringAsFixed(0),
       "termica": clima.termica.toStringAsFixed(0) == "-0"
           ? "0"
           : clima.termica.toStringAsFixed(0),
-      "tempmin": clima.tempmin.toStringAsFixed(0),
-      "tempmax": clima.tempmax.toStringAsFixed(0),
+      "tempmin": clima.tempmin.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmin.toStringAsFixed(0),
+      "tempmax": clima.tempmax.toStringAsFixed(0) == "-0"
+          ? "0"
+          : clima.tempmax.toStringAsFixed(0),
       "humedad": clima.humedad.toStringAsFixed(0),
       "viento": clima.speedW.toStringAsFixed(0),
       "des": clima.description,
@@ -158,7 +169,7 @@ class ClimaBloc {
       "maxWindDia2": clima.maxWindDia2.toStringAsFixed(0),
       "maxWindDia3": clima.maxWindDia3.toStringAsFixed(0),
       "amanecer": clima.amanecer,
-      "atardecer": clima.atardecer
+      "atardecer": clima.atardecer,
     });
   }
 
